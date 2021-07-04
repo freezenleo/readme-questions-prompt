@@ -1,0 +1,22 @@
+{
+  "name": "readme-questions-prompt",
+  "version": "1.0.0",
+  "description": "generate a readme file for project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freezenleo/readme-questions-prompt.git"
+  },
+  "author": "Jiaming Zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freezenleo/readme-questions-prompt/issues"
+  },
+  "homepage": "https://github.com/freezenleo/readme-questions-prompt#readme",
+  "dependencies": {
+    "inquirer": "^8.1.1"
+  }
+}
