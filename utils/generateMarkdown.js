@@ -1,8 +1,18 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+const licenseArr = {
+  'Apache 2.0': '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
+  'MIT': '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
+  'MPL 2.0': '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)',
+  'Artistic 2.0': '[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)',
+  'Unlicense': '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'
+};
+
 function renderLicenseBadge(license) {
-  return `
-  ![License](https://img.shields.io/badge/License-${answers.license}-blue.svg)
+  license
+  if (data.license)
+    return `
+  ![License](https://img.shields.io/badge/License-${data.license}-blue.svg)
   `
 }
 
@@ -10,7 +20,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   return `
-  https://opensource.org/licenses/${answers.license}
+  https://opensource.org/licenses/${data.license}
   `
 }
 
@@ -29,7 +39,7 @@ function generateMarkdown(data) {
   ${renderLicenseSection}
   
   ## Description
-  ${answers.description}
+  ${data.description}
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
@@ -42,27 +52,27 @@ function generateMarkdown(data) {
   Follow the steps to for installation:
 
   \`
-  ${answers.installation}
+  ${data.installation}
   \`
 
   ## Usage
-  ${answers.usage}
+  ${data.usage}
 
   ## License
-  This repository is licensed though ${answers.license} license.
+  This repository is licensed though ${data.license} license.
 
   ## Contributing
-  ${answers.contributing}
+  ${data.contributing}
 
   ## Tests
   Run the following code for tests:
   \`
-  ${answers.tests}
+  ${data.tests}
   \`
 
   ## Questions
-  If you have questions about this repo, please contact me at ${answers.email}
-  My GitHub: [${data.username}](https://github.com/${answers.username})
+  If you have questions about this repo, please contact me at ${data.email}
+  My GitHub: [${data.username}](https://github.com/${data.username})
   `;
 }
 

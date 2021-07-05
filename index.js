@@ -1,8 +1,10 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const util = require('util');
 const generateMarkdown = require('./utils/generateMarkdown');
 
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
 const questions = ['What is your GitHub username?',
@@ -16,11 +18,10 @@ const questions = ['What is your GitHub username?',
     'What does the user need to know about contributing to the repo?'
 ];
 
-const promptUser = userData => {
-    if (!userData.projects) {
-        userData.projects = [];
-    };
-
+const promptUser = (answers) => {
+    if (!answers) {
+        answers = [];
+    }
     return inquirer.prompt([
         {
             type: 'input',
@@ -46,7 +47,7 @@ const promptUser = userData => {
             type: 'checkbox',
             name: 'licenses',
             message: questions[4],
-            choices: ['Apache-2.0', 'MIT', 'MPL-2.0', 'Artistic-2.0', 'Unlicense']
+            choices: ['Apache 2.0', 'MIT', 'MPL 2.0', 'Artistic 2.0', 'Unlicense']
         },
         {
             type: 'input',
@@ -73,18 +74,32 @@ const promptUser = userData => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const fileName = '.generated-readme.md';
-    return fs.writeFile(fileName, data, err => {
-        if (err) throw new Error(err);
-        console.log('readme created!')
-    })
+    return writeFileAsync(fileName, data);
+    // return fs.writeFile(fileName, data, err => {
+    //     if (err) throw new Error(err);
+    //     console.log('readme created!')
+    // })
 }
 
 // TODO: Create a function to initialize app
-function init() {
-    return new Promise((resolve, reject) => {
-        writeToFile();
-    });
+const init = async () => {
+    try {
+        const answers = await promptUser();
+        const fileContent = generateMarkdown(answers);
+        await writeToFile('./dist/readme-project.md', fileContent);
+        console.log('readme created in dist folder')
+    } catch (err) {
+        console.error('Error, file not created.');
+        console.log(err);
+    }
+    // promptUser()
+    //     .then(answers => {
+    //         return generateMarkdown(answers)
+    //     })
+    //     .then(data => {
+    //         writeToFile(data)
+    //     })
+
 }
 
 // Function call to initialize app
