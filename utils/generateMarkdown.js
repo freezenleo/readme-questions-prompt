@@ -1,6 +1,6 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const licenseArr = {
+const licensesArr = {
   'Apache 2.0': '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
   'MIT': '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
   'MPL 2.0': '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)',
@@ -10,13 +10,14 @@ const licenseArr = {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  let licenseSection = licenseArr[data.license];
+  data.licenseSection = licensesArr[data.licenses];
+  console.log('license', data.licenseSection);
 
   return `# ${data.title}
-  ${licenseSection}
+  ${data.licenseSection}
   
   ## Description
-  ${answers.description}
+  ${data.description}
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
@@ -29,27 +30,28 @@ function generateMarkdown(data) {
   Follow the steps to for installation:
 
   \`
-  ${answers.installation}
+  ${data.installation}
   \`
 
   ## Usage
-  ${answers.usage}
+  ${data.usage}
 
   ## License
-  This repository is licensed though ${answers.license} license.
+  This repository is licensed though ${data.licenses} license.
 
   ## Contributing
-  ${answers.contributing}
+  ${data.contributing}
 
   ## Tests
   Run the following code for tests:
+  
   \`
-  ${answers.tests}
+  ${data.tests}
   \`
 
   ## Questions
-  If you have questions about this repo, please contact me at ${answers.email}
-  My GitHub: [${data.username}](https://github.com/${answers.username})
+  If you have questions about this repo, please contact me at ${data.email}
+  My GitHub: [${data.username}](https://github.com/${data.username})
   `;
 }
 
