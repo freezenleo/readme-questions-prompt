@@ -1,10 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util');
 const generateMarkdown = require('./utils/generateMarkdown');
-
-const writeFileAsync = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
 const questions = ['What is your GitHub username?',
@@ -18,10 +15,7 @@ const questions = ['What is your GitHub username?',
     'What does the user need to know about contributing to the repo?'
 ];
 
-const promptUser = (answers) => {
-    if (!answers) {
-        answers = [];
-    }
+const promptUser = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -44,7 +38,7 @@ const promptUser = (answers) => {
             message: questions[3]
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'licenses',
             message: questions[4],
             choices: ['Apache 2.0', 'MIT', 'MPL 2.0', 'Artistic 2.0', 'Unlicense']
@@ -74,31 +68,26 @@ const promptUser = (answers) => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    return writeFileAsync(fileName, data);
-    // return fs.writeFile(fileName, data, err => {
-    //     if (err) throw new Error(err);
-    //     console.log('readme created!')
-    // })
+    fileName = './dist/readme-project.md';
+    return fs.writeFile(fileName, parseInt(data).toString(), err => {
+        if (err) throw new Error(err);
+        console.log('readme created!')
+    })
 }
 
 // TODO: Create a function to initialize app
-const init = async () => {
-    try {
-        const answers = await promptUser();
-        const fileContent = generateMarkdown(answers);
-        await writeToFile('./dist/readme-project.md', fileContent);
-        console.log('readme created in dist folder')
-    } catch (err) {
-        console.error('Error, file not created.');
-        console.log(err);
-    }
-    // promptUser()
-    //     .then(answers => {
-    //         return generateMarkdown(answers)
-    //     })
-    //     .then(data => {
-    //         writeToFile(data)
-    //     })
+function init() {
+
+    promptUser()
+        .then(answers => {
+            return generateMarkdown(answers)
+        })
+        .then(fileContent => {
+            return writeToFile(fileContent)
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
 }
 

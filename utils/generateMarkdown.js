@@ -9,9 +9,8 @@ const licenseArr = {
 };
 
 function renderLicenseBadge(license) {
-  license
-  if (data.license)
-    return `
+
+  return `
   ![License](https://img.shields.io/badge/License-${data.license}-blue.svg)
   `
 }
