@@ -22,33 +22,16 @@ function renderLicenseBadge(license) {
   } else if (licenseType === 'Artistic 2.0') {
     yourLicense = licenseArr[3]
   } else {
-    license.license = licenseArr[4]
+    yourLicense = licenseArr[4]
   }
   return yourLicense;
 }
 
-
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  return `
-  https://opensource.org/licenses/${data.license}
-  `
-}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-
-
-}
-
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  renderLicenseBadge(license);
+  someVar = renderLicenseBadge(data.license);
   return `# ${data.title}
-  ${data.license}
+  ${someVar}
   
   ## Description
   ${data.description}
