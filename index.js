@@ -39,7 +39,7 @@ const promptUser = () => {
         },
         {
             type: 'list',
-            name: 'licenses',
+            name: 'license',
             message: questions[4],
             choices: ['Apache 2.0', 'MIT', 'MPL 2.0', 'Artistic 2.0', 'Unlicense']
         },
@@ -68,8 +68,8 @@ const promptUser = () => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fileName = './dist/readme-project.md';
-    return fs.writeFile(fileName, parseInt(data).toString(), err => {
+
+    return fs.writeFile(fileName, data, err => {
         if (err) throw new Error(err);
         console.log('readme created!')
     })
@@ -82,8 +82,9 @@ function init() {
         .then(answers => {
             return generateMarkdown(answers)
         })
-        .then(fileContent => {
-            return writeToFile(fileContent)
+        .then((data) => {
+
+            return writeToFile('./dist/readme-project.md', data)
         })
         .catch(err => {
             console.log(err);

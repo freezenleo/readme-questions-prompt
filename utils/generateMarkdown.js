@@ -1,19 +1,33 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const licenseArr = {
-  'Apache 2.0': '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
-  'MIT': '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
-  'MPL 2.0': '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)',
-  'Artistic 2.0': '[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)',
-  'Unlicense': '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'
-};
+const licenseArr = [
+  '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
+  '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
+  '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)',
+  '[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)',
+  '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'
+];
 
 function renderLicenseBadge(license) {
 
-  return `
-  ![License](https://img.shields.io/badge/License-${data.license}-blue.svg)
-  `
+  let licenseType = license;
+  let yourLicense = ''
+  if (licenseType === 'Apache 2.0') {
+    yourLicense = licenseArr[0]
+  }
+  else if (licenseType === 'MIT') {
+    yourLicense = licenseArr[1]
+  } else if (licenseType === 'MPL 2.0') {
+    yourLicense = licenseArr[2]
+  } else if (licenseType === 'Artistic 2.0') {
+    yourLicense = licenseArr[3]
+  } else {
+    license.license = licenseArr[4]
+  }
+  return yourLicense;
 }
+
+
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -26,16 +40,15 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if (license === 'N/A') {
-    return '';
-  }
+
 
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  renderLicenseBadge(license);
   return `# ${data.title}
-  ${renderLicenseSection}
+  ${data.license}
   
   ## Description
   ${data.description}
@@ -65,6 +78,7 @@ function generateMarkdown(data) {
 
   ## Tests
   Run the following code for tests:
+
   \`
   ${data.tests}
   \`
