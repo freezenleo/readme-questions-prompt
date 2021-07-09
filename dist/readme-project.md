@@ -15,22 +15,23 @@
   Follow the steps to for installation:
 
   `
-  npm i 
+  npm i
   `
 
   ## Usage
-  This is just a demo for testing. 
+  This is just a demo for testing
 
   ## License
   This repository is licensed though MIT license.
 
   ## Contributing
-  This is just a demo for testing.
+  This is just a demo for testing
 
   ## Tests
   Run the following code for tests:
+  
   `
-  npm run tests
+  npm run test
   `
 
   ## Questions

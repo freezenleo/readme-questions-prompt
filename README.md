@@ -19,7 +19,7 @@
   `
 
   ## Usage
-  This is just a demo for testing. 
+  Run node index.js to start answer prompt questions, and it will generate a readme-project.md inside dist folder.
 
   ## License
   This repository is licensed though MIT license.
@@ -38,3 +38,6 @@
   If you have questions about this repo, please contact me at freezenleo@gmail.com
   My GitHub: [freezenleo](https://github.com/freezenleo)
   
+  Repository URL: https://github.com/freezenleo/readme-questions-prompt
+  </br>
+  Walkthrough Video URL: https://drive.google.com/file/d/1W6HeykFoLjV5grSJaXE-E6Hsf_xzFHFs/view

@@ -75,10 +75,6 @@ const promptUser = (answers) => {
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return writeFileAsync(fileName, data);
-    // return fs.writeFile(fileName, data, err => {
-    //     if (err) throw new Error(err);
-    //     console.log('readme created!')
-    // })
 }
 
 // TODO: Create a function to initialize app
@@ -92,14 +88,6 @@ const init = async () => {
         console.error('Error, file not created.');
         console.log(err);
     }
-    // promptUser()
-    //     .then(answers => {
-    //         return generateMarkdown(answers)
-    //     })
-    //     .then(data => {
-    //         writeToFile(data)
-    //     })
-
 }
 
 // Function call to initialize app
